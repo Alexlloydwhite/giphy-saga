@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import {useDispatch} from 'react-redux';
 
@@ -15,7 +16,6 @@ function FavoriteItem(img) {
     
 
     return(
-        <>
             <div className='card'>
                 <img src={img.url} />
                 <label for="category">Category:</label>
@@ -26,9 +26,9 @@ function FavoriteItem(img) {
 
 
             </div>
-        </>
     )
 
 }
+
 
 export default FavoriteItem;
