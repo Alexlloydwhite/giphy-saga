@@ -27,6 +27,11 @@ const SearchForm = () => {
         }
     }
 
+    const addFavorite = () => {
+        let favGiphy = searchResult;
+        dispatch({ type: 'ADD_NEW_FAVORITE', image: favGiphy })
+    }
+
     const searchResults = useSelector(store => store.search)
     return (
         <div>
@@ -37,7 +42,7 @@ const SearchForm = () => {
             </div>
             <div>
                 {toggledSearch ? <h2>Showing Search Results For: {searchResult}</h2> : <></>}
-                {toggledSearch ? <img src={searchResults}></img> : <h5>Search for an image!</h5> }
+                {toggledSearch ? <div><img src={searchResults}></img><br /><button onClick={addFavorite}>favorite</button> </div> : <h5>Search for an image!</h5>}
             </div>
         </div>
     );
