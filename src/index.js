@@ -34,7 +34,7 @@ function* addGif(action) {
 
 function* deleteGif(action) {
     try{
-        yield axios.delete(`/api//${action.payload}`);
+        yield axios.delete(`/api/favorite/${action.payload}`);
         yield put({type: 'FETCH_GIF'});
     } catch (error) {
         alert('Unable to delete Gif');
