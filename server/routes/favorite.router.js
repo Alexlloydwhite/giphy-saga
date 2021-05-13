@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 // add a new favorite
 router.post('/', (req, res) => {
   let newFavorite = req.body;
-  console.log('Adding a new favorite', newBook);
+  console.log('Adding a new favorite', newFavorite);
   // NEED TO ADD TO THIS ONCE DATABASE IS SET UP 
   let queryText = `INSERT INTO "favorites" ("url", "category_id")
                   Values ($1, $2);`;
