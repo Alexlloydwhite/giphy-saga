@@ -6,7 +6,9 @@ const SearchForm = () => {
     const dispatch = useDispatch();
     const [search, setSearch] = useState('');
     const [toggledSearch, setToggleSearch] = useState(false);
+    // state is used for 
     const [searchResult, setSearchResults] = useState('');
+    // state is used to toggle image fav complete msg
     const [favorite, setFavorite] = useState(false);
 
     const searchGiphy = () => {
