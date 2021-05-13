@@ -61,8 +61,16 @@ const gifList = (state = [], action) => {
     }
 };
 
+const search = (state = {}, action)  => {
+    if(action.type === 'SET_SEARCH') {
+        return action.payload;
+    }
+    return state;
+}
+
 const store = createStore (
     combineReducers({
+        search,
         gifList
     }),
     applyMiddleware(sagaMiddleware, logger),
