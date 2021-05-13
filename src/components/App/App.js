@@ -6,13 +6,6 @@ import SearchForm from '../Search/searchform';
 
 
 function App() {
-  //create variable for accessing dispatch function 
-  const dispatch = useDispatch();
-  //
-  // useEffect(() => {
-  //   dispatch({ type: 'FETCH_GIF' })
-  // })
-
 
   return (
     <div>

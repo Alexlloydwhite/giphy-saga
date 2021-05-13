@@ -5,7 +5,6 @@ const router = express.Router();
 
 // return all favorite images
 router.get('/', (req, res) => {
-  // WILL PROBABLY NEED TO GET CHANGED LATER
   let queryText = `SELECT url FROM "favorites" ORDER BY "url";`;
   pool.query(queryText).then(result => {
     res.send(result.rows);
@@ -20,7 +19,6 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   let newFavorite = req.body;
   console.log('Adding a new favorite', newFavorite);
-  // NEED TO ADD TO THIS ONCE DATABASE IS SET UP 
   let queryText = `INSERT INTO "favorites" ("url", "category_id")
                   Values ($1, $2);`;
   pool.query(queryText, [newFavorite.url, newFavorite.category_id])
