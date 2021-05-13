@@ -7,7 +7,7 @@ const SearchForm = () => {
 
     const searchGiphy = () => {
         if (search !== '') {
-            axios.get('/search', {
+            axios.get('/api/search', {
                 params: {
                     search: search
                 }
