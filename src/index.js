@@ -22,6 +22,17 @@ function* getGif() {
     }
 }
 
+function* getFavorite() {
+    try {
+        const response = yield axios.get('/api/');
+        yield put({type: 'SET_FAVORITE', payload: response.data});
+    } catch (error) {
+        alert('Unable to get gif from server');
+        console.log('ERROR in getGif', error);
+    }
+}
+
+
 function* addGif(action) {
     try {
         yield axios.post('/api/', action.payload);
@@ -45,8 +56,13 @@ function* deleteGif(action) {
 const sagaMiddleware = createSagaMiddleware();
 
 function* rootSaga() {
+    //GET 
     yield takeEvery('FETCH_GIF', getGif);
+    //GET FAV
+    yield takeEvery('FETCH_FAVORITE', getFavorite);
+    // ADD
     yield takeEvery('ADD_GIF', addGif);
+    // DELETE
     yield takeEvery('DELETE_GIF', deleteGif);
 }
 
