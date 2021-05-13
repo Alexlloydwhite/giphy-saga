@@ -9,6 +9,24 @@ CREATE TABLE "category" (
     "name" VARCHAR (100) NOT NULL
 );
 
+CREATE TABLE "favorites" (
+	"id" SERIAL PRIMARY KEY,
+	"url" VARCHAR (200) NOT NULL,
+	"category_id" integer REFERENCES category
+);
+
 -- Default categories. You may change them :)
 INSERT INTO "category" ("name")
 VALUES ('funny'), ('cohort'), ('cartoon'), ('nsfw'), ('meme');
+
+-- dummy data
+INSERT INTO "favorites" VALUES
+(1000, 'http://giphy.com/funny', 1),
+(1001, 'http://giphy.com/cohort', 2),
+(1002, 'http://giphy.com/cartoon', 3),
+(1003, 'http://giphy.com/nsfw', 4),
+(1004, 'http://giphy.com/meme', 5);
+
+-- join tables as such
+SELECT * FROM favorites f
+JOIN category c ON c.id = f.category_id;
