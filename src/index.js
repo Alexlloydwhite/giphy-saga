@@ -22,6 +22,18 @@ function* getGif() {
     }
 }
 
+
+function* getFavorite() {
+    try {
+        const response = yield axios.get('/api/');
+        yield put({type: 'SET_FAVORITE', payload: response.data});
+    } catch (error) {
+        alert('Unable to get gif from server');
+        console.log('ERROR in getGif', error);
+    }
+}
+
+
 function* addFavoriteGif(action) {
     try {
         yield axios.post('/api/favorite', action.image);
