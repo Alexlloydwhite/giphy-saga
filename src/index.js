@@ -36,7 +36,7 @@ function* getFavorite() {
 
 function* addFavoriteGif(action) {
     try {
-        yield axios.post('/api/favorite', action.payload);
+        yield axios.post('/api/favorite', String(action.payload) );
     } catch (error) {
         alert('Unable to add new gif');
         console.log('ERROR in addGif', error);

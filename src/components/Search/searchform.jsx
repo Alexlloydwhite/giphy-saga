@@ -7,6 +7,7 @@ const SearchForm = () => {
     const [search, setSearch] = useState('');
     const [toggledSearch, setToggleSearch] = useState(false);
     const [searchResult, setSearchResults] = useState('');
+    const [favorite, setFavorite] = useState(false);
 
     const searchGiphy = () => {
         if (search !== '') {
@@ -18,6 +19,7 @@ const SearchForm = () => {
                 .then(response => {
                     dispatch({ type: 'SET_SEARCH', payload: response.data.data.images.original.url });
                     setToggleSearch(true);
+                    setFavorite(false);
                     setSearchResults(search);
                 })
                 .then(setSearch(''))
@@ -29,7 +31,9 @@ const SearchForm = () => {
 
     const addFavorite = () => {
         let favGiphy = searchResults;
+        console.log(favGiphy);
         dispatch({ type: 'ADD_NEW_FAVORITE', payload: favGiphy })
+        setFavorite(true);
     }
 
     const searchResults = useSelector(store => store.search)
@@ -43,7 +47,14 @@ const SearchForm = () => {
             </div>
             <div>
                 {toggledSearch ? <h2>Showing Search Results For: {searchResult}</h2> : <></>}
-                {toggledSearch ? <div><img src={searchResults}></img><br /><button onClick={addFavorite}>favorite</button> </div> : <h5>Search for an image!</h5>}
+                {toggledSearch ? 
+                <div>
+                    <img src={searchResults}></img><br />
+                    {favorite ? <h5>Image Added To Favorites!</h5> : <button onClick={addFavorite}>favorite</button>}
+                    
+                </div> 
+                :
+                <h5>Search for an image!</h5>}
             </div>
         </div>
     );
