@@ -14,7 +14,7 @@ import axios from 'axios';
 
 function* getGif() {
     try {
-        const response = yield axios.get('/api/');
+        const response = yield axios.get('/api/search');
         yield put({type: 'SET_GIF', payload: response.data});
     } catch (error) {
         alert('Unable to get gif from server');
@@ -25,7 +25,7 @@ function* getGif() {
 
 function* getFavorite() {
     try {
-        const response = yield axios.get('/api/');
+        const response = yield axios.get('/api/favorite');
         yield put({type: 'SET_FAVORITE', payload: response.data});
     } catch (error) {
         alert('Unable to get gif from server');
@@ -60,6 +60,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_GIF', getGif);
     yield takeEvery('ADD_NEW_FAVORITE', addFavoriteGif);
     yield takeEvery('DELETE_GIF', deleteGif);
+    yield takeEvery('FETCH_FAVORITE', getFavorite);
 }
 
 const gifList = (state = [], action) => {
