@@ -1,14 +1,14 @@
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import FavoriteItem from './FavoriteItem'
+import FavoriteItem from '../FavoriteItem/FavoriteItem';
 
-function FavoriteList (){
+function FavoriteList() {
 
-    const gifList = useSelector(store => store.gifList);
+    // const gifList = useSelector(store => store.gifList);
     const dispatch = useDispatch();
     //
     useEffect(() => {
-      dispatch({type: 'FETCH_FAVORITE'})
+        dispatch({ type: 'FETCH_FAVORITE' })
     })
     return (
         <>
