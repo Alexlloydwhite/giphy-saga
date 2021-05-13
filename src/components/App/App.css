@@ -1,0 +1,21 @@
+.navBar {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    border-bottom: 1px solid #f2f2f2;
+    margin-bottom: 50px;
+  }
+  .navBar h1 {
+    color: forestgreen;
+  }
+  .navBar .links {
+    margin-left: auto;
+  }
+  
+  .navBar h5 {
+      margin-left: 16px;
+      padding: 6px;
+      cursor: pointer;
+  }
