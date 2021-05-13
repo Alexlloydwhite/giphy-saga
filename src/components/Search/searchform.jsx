@@ -6,6 +6,7 @@ const SearchForm = () => {
     const dispatch = useDispatch();
     const [search, setSearch] = useState('');
     const [toggledSearch, setToggleSearch] = useState(false);
+    const [searchResult, setSearchResults] = useState('');
 
     const searchGiphy = () => {
         if (search !== '') {
@@ -17,6 +18,7 @@ const SearchForm = () => {
                 .then(response => {
                     dispatch({ type: 'SET_SEARCH', payload: response.data.data.images.original.url });
                     setToggleSearch(true);
+                    setSearchResults(search);
                 })
                 .then(setSearch(''))
                 .catch(err => {
@@ -34,7 +36,7 @@ const SearchForm = () => {
                 <button onClick={searchGiphy}>Search</button>
             </div>
             <div>
-            
+                {toggledSearch ? <h2>Showing Search Results For: {searchResult}</h2> : <></>}
                 {toggledSearch ? <img src={searchResults}></img> : <h5>Search for an image!</h5> }
             </div>
         </div>
