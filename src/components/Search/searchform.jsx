@@ -1,10 +1,11 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useState } from 'react';
 
 const SearchForm = () => {
     const dispatch = useDispatch();
     const [search, setSearch] = useState('');
+    const [toggledSearch, setToggleSearch] = useState(false);
 
     const searchGiphy = () => {
         if (search !== '') {
@@ -14,7 +15,8 @@ const SearchForm = () => {
                 }
             })
                 .then(response => {
-                    dispatch({ type: 'SET_SEARCH', payload: response.data.data.images.original.url })
+                    dispatch({ type: 'SET_SEARCH', payload: response.data.data.images.original.url });
+                    setToggleSearch(true);
                 })
                 .then(setSearch(''))
                 .catch(err => {
@@ -22,11 +24,19 @@ const SearchForm = () => {
                 })
         }
     }
+
+    const searchResults = useSelector(store => store.search)
     return (
         <div>
-            <h4>Search For a Giphy</h4>
-            <input onChange={(e) => setSearch(e.target.value)} value={search}></input>
-            <button onClick={searchGiphy}>Search</button>
+            <div>
+                <h4>Search For a Giphy</h4>
+                <input onChange={(e) => setSearch(e.target.value)} value={search}></input>
+                <button onClick={searchGiphy}>Search</button>
+            </div>
+            <div>
+            
+                {toggledSearch ? <img src={searchResults}></img> : <h5>Search for an image!</h5> }
+            </div>
         </div>
     );
 }
