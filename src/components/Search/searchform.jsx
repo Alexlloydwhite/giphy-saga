@@ -1,5 +1,6 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
+import { useState } from 'react';
 
 const SearchForm = () => {
     const dispatch = useDispatch();

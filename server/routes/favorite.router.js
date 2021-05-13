@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
   console.log('Adding a new favorite', newBook);
   // NEED TO ADD TO THIS ONCE DATABASE IS SET UP 
   let queryText = `INSERT INTO "favorites"`
-  pool.query(queryText, [newFavorite...])
+  pool.query(queryText, [newFavorite])
     .then(result => {
       res.sendStatus(201);
     })
