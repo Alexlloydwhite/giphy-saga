@@ -6,7 +6,7 @@ const router = express.Router();
 // return all favorite images
 router.get('/', (req, res) => {
   // WILL PROBABLY NEED TO GET CHANGED LATER
-  axios.get('GET_FAVORITES')
+  axios.get('SET_GIF')
   .then(response => {
     res.send(response.data)
   })
@@ -21,8 +21,9 @@ router.post('/', (req, res) => {
   let newFavorite = req.body;
   console.log('Adding a new favorite', newFavorite);
   // NEED TO ADD TO THIS ONCE DATABASE IS SET UP 
-  let queryText = `INSERT INTO "favorites"`
-  pool.query(queryText, [newFavorite])
+  let queryText = `INSERT INTO "favorites" ("url", "category_id")
+                  Values ($1, $2);`;
+  pool.query(queryText, [newFavorite.url, newFavorite.category_id])
     .then(result => {
       res.sendStatus(201);
     })
@@ -57,7 +58,7 @@ router.delete('/:favId', (req, res) => {
     res.sendStatus(200);
   })
   .catch(error => {
-    console.log('Error with deleting favorit', error);
+    console.log('Error with deleting favorite', error);
     res.sendStatus(500);
   })
 });
