@@ -4,15 +4,19 @@ import { useState } from 'react';
 
 const SearchForm = () => {
     const dispatch = useDispatch();
+    // state to hold search 
     const [search, setSearch] = useState('');
+    // state for cond rend of searched img
     const [toggledSearch, setToggleSearch] = useState(false);
-    // state is used for 
+    // state is used for storing name of search
     const [searchResult, setSearchResults] = useState('');
-    // state is used to toggle image fav complete msg
+    // used to toggle image fav complete msg, after click event
     const [favorite, setFavorite] = useState(false);
 
     const searchGiphy = () => {
+        // checks to ensure input was provided
         if (search !== '') {
+            // sends search to giphy API
             axios.get('/api/search', {
                 params: {
                     search: search
