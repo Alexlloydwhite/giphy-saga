@@ -5,7 +5,9 @@ function FavoriteItem(img) {
 
 
     const dispatch = useDispatch();
-    //
+
+    const category = useSelector(store => store.category);
+
     useEffect(() => {
       dispatch({type: 'FETCH_CATEGORY'})
     })
@@ -17,12 +19,9 @@ function FavoriteItem(img) {
             <div className='card'>
                 <img src={img.url} />
                 <label for="category">Category:</label>
-                <select name="category" id="category">
-                    <option value={}>{}</option>
-                    <option value="cohort">Cohort</option>
-                    <option value="cartoon">Cartoon</option>
-                    <option value="nsfw">NSFW</option>
-                    <option value="meme">MEME</option>
+                <select {...category.map((item) => 
+                    <option value={item.id}>{item.name}</option>
+                )}>
                 </select>
 
 

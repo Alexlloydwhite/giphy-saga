@@ -12,8 +12,8 @@ function FavoriteList (){
     })
     return (
         <>
-            {gifList.map((img, index) => 
-                <FavoriteItem key={index} img src={img.url} /> 
+            {gifList.map((img) => 
+                <FavoriteItem key={img.id} img src={img.url} /> 
             )}
         </>
     )
