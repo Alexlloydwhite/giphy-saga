@@ -22,10 +22,10 @@ function* getGif() {
     }
 }
 
-function* addGif(action) {
+function* addFavoriteGif(action) {
     try {
-        yield axios.post('/api/', action.payload);
-        yield put({type: 'FETCH_GIF'});
+        yield axios.post('/api/favorite', action.image);
+        yield put({type: 'ADD_NEW_FAVORITE'});
     } catch (error) {
         alert('Unable to add new gif');
         console.log('ERROR in addGif', error);
@@ -46,7 +46,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 function* rootSaga() {
     yield takeEvery('FETCH_GIF', getGif);
-    yield takeEvery('ADD_GIF', addGif);
+    yield takeEvery('ADD_NEW_FAVORITE', addFavoriteGif);
     yield takeEvery('DELETE_GIF', deleteGif);
 }
 
