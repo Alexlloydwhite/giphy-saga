@@ -36,8 +36,7 @@ function* getFavorite() {
 
 function* addFavoriteGif(action) {
     try {
-        yield axios.post('/api/favorite', action.image);
-        yield put({type: 'ADD_NEW_FAVORITE'});
+        yield axios.post('/api/favorite', action.payload);
     } catch (error) {
         alert('Unable to add new gif');
         console.log('ERROR in addGif', error);
@@ -66,7 +65,7 @@ function* rootSaga() {
 const gifList = (state = [], action) => {
     switch (action.type) {
         case 'ADD_GIF':
-            return[...state, action.payload]
+            return[...state, action.image]
         case 'SET_GIF':
             return action.payload
         default:
