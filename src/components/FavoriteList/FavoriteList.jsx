@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import { useDispatch } from 'react-redux';
-import FavoriteItem from './FavoriteItem'
+import FavoriteItem from '../FavoriteItem/FavoriteItem';
 
 function FavoriteList (){
 
