@@ -1,9 +1,11 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+
 const axios = require('axios');
+require('dotenv').config();
 // pulls giphy key from ENV
-const GIPHY_KEY = '4re21hN8TOSTSg9wIcA0SDg7pr9BKpRE';
+const GIPHY_KEY = process.env.GIPHY_API_KEY;
 // log for testing only DELETE THIS BEFORE PR
 console.log('giphy api key:', GIPHY_KEY);
 // router for returning search results from GIPHY API

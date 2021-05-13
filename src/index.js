@@ -14,7 +14,7 @@ import axios from 'axios';
 
 function* getGif() {
     try {
-        const response = yield axios.get('/api/');
+        const response = yield axios.get('/api/search');
         yield put({type: 'SET_GIF', payload: response.data});
     } catch (error) {
         alert('Unable to get gif from server');
@@ -25,7 +25,7 @@ function* getGif() {
 
 function* getFavorite() {
     try {
-        const response = yield axios.get('/api/');
+        const response = yield axios.get('/api/favorite');
         yield put({type: 'SET_FAVORITE', payload: response.data});
     } catch (error) {
         alert('Unable to get gif from server');
@@ -47,8 +47,7 @@ function* getCategory(){
 
 function* addFavoriteGif(action) {
     try {
-        yield axios.post('/api/favorite', action.image);
-        yield put({type: 'ADD_NEW_FAVORITE'});
+        yield axios.post('/api/favorite', action.payload);
     } catch (error) {
         alert('Unable to add new gif');
         console.log('ERROR in addGif', error);
@@ -72,12 +71,13 @@ function* rootSaga() {
     yield takeEvery('ADD_NEW_FAVORITE', addFavoriteGif);
     yield takeEvery('DELETE_GIF', deleteGif);
     yield takeEvery('FETCH_CATEGORY', getCategory);
+    yield takeEvery('FETCH_FAVORITE', getFavorite);
 }
 
 const gifList = (state = [], action) => {
     switch (action.type) {
         case 'ADD_GIF':
-            return[...state, action.payload]
+            return[...state, action.image]
         case 'SET_GIF':
             return action.payload
         default:
@@ -92,10 +92,18 @@ const search = (state = {}, action)  => {
     return state;
 }
 
+const category = (state = [], action) => {
+    if(action.type === 'SET_CATEGORY'){
+        return action.payload;
+    }
+    return state;
+}
+
 const store = createStore (
     combineReducers({
         search,
-        gifList
+        gifList,
+        category
     }),
     applyMiddleware(sagaMiddleware, logger),
 );

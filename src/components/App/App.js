@@ -1,8 +1,6 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { HashRouter as Router, Route } from 'react-router-dom';
 import SearchForm from '../Search/searchform';
-
 
 function App() {
  

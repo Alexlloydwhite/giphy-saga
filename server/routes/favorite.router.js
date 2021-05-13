@@ -5,10 +5,9 @@ const router = express.Router();
 
 // return all favorite images
 router.get('/', (req, res) => {
-  // WILL PROBABLY NEED TO GET CHANGED LATER
-  axios.get('SET_GIF')
-  .then(response => {
-    res.send(response.data)
+  let queryText = `SELECT url FROM "favorites" ORDER BY "url";`;
+  pool.query(queryText).then(result => {
+    res.send(result.rows);
   })
   .catch(error => {
     console.log('Error with getting favorites from server', error);
@@ -20,10 +19,9 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   let newFavorite = req.body;
   console.log('Adding a new favorite', newFavorite);
-  // NEED TO ADD TO THIS ONCE DATABASE IS SET UP 
-  let queryText = `INSERT INTO "favorites" ("url", "category_id")
-                  Values ($1, $2);`;
-  pool.query(queryText, [newFavorite.url, newFavorite.category_id])
+  let queryText = `INSERT INTO "favorites" ("url")
+                  Values ($1);`;
+  pool.query(queryText, [newFavorite])
     .then(result => {
       res.sendStatus(201);
     })

@@ -28,11 +28,12 @@ const SearchForm = () => {
     }
 
     const addFavorite = () => {
-        let favGiphy = searchResult;
-        dispatch({ type: 'ADD_NEW_FAVORITE', image: favGiphy })
+        let favGiphy = searchResults;
+        dispatch({ type: 'ADD_NEW_FAVORITE', payload: favGiphy })
     }
 
     const searchResults = useSelector(store => store.search)
+    const favList = useSelector(store => store.gifList)
     return (
         <div>
             <div>
