@@ -1,7 +1,7 @@
 const FavoriteItem = ({ img }) => {
     return (
         <div>
-            {JSON.stringify(img.data)}
+            {/* {JSON.stringify(img)} */}
         </div>
     );
 }

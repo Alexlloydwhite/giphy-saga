@@ -14,6 +14,7 @@ function FavoriteList() {
 
     return (
         <div>
+            {JSON.stringify(gifList)}
             {gifList.map(img => 
                 <FavoriteItem key={img.id} img={img} /> 
             )}
