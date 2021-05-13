@@ -1,7 +1,9 @@
-const FavoriteItem = () => {
-    return (  
-        <h5>Fav item here!</h5>
+const FavoriteItem = ({ img }) => {
+    return (
+        <div>
+            {JSON.stringify(img.data)}
+        </div>
     );
 }
- 
+
 export default FavoriteItem;
