@@ -37,7 +37,6 @@ const SearchForm = () => {
     return (
         <div>
             <div>
-                {JSON.stringify(favList)}
                 <h4>Search For a Giphy</h4>
                 <input onChange={(e) => setSearch(e.target.value)} value={search}></input>
                 <button onClick={searchGiphy}>Search</button>

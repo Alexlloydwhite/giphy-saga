@@ -19,9 +19,7 @@ router.get('/', (req, res) => {
 // add a new favorite
 router.post('/', (req, res) => {
   let newFavorite = req.body;
-  console.log('req.body is...',req.body);
   console.log('Adding a new favorite', newFavorite);
-  // NEED TO ADD TO THIS ONCE DATABASE IS SET UP 
   let queryText = `INSERT INTO "favorites" ("url")
                   Values ($1);`;
   pool.query(queryText, [newFavorite])
