@@ -1,11 +1,12 @@
 import React from 'react';
 import { HashRouter as Router, Route } from 'react-router-dom';
 import SearchForm from '../Search/searchform';
+import Header from './Header';
 
 function App() {
   return (
     <div>
-      <h1>Giphy Search!</h1>
+      <Header />
       <Router>
         <Route exact path="/" component={SearchForm} />
       </Router>
