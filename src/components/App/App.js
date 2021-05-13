@@ -5,6 +5,9 @@ import Header from './Header';
 import FavoriteList from '../FavoriteList/FavoriteList';
 
 function App() {
+ 
+
+
   return (
     <div>
       <Router>

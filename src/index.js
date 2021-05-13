@@ -33,6 +33,17 @@ function* getFavorite() {
     }
 }
 
+function* getCategory(){
+    try {
+        const response = yield axios.get('/api/category');
+        yield put({type: 'SET_CATEGORY', payload: response.data});
+    } catch (error) {
+        alert('Unable to get category from server');
+        console.log('ERROR in getting category', error);
+    }
+        
+}
+
 
 function* addFavoriteGif(action) {
     try {
@@ -59,6 +70,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_GIF', getGif);
     yield takeEvery('ADD_NEW_FAVORITE', addFavoriteGif);
     yield takeEvery('DELETE_GIF', deleteGif);
+    yield takeEvery('FETCH_CATEGORY', getCategory);
     yield takeEvery('FETCH_FAVORITE', getFavorite);
 }
 
@@ -80,10 +92,18 @@ const search = (state = {}, action)  => {
     return state;
 }
 
+const category = (state = [], action) => {
+    if(action.type === 'SET_CATEGORY'){
+        return action.payload;
+    }
+    return state;
+}
+
 const store = createStore (
     combineReducers({
         search,
-        gifList
+        gifList,
+        category
     }),
     applyMiddleware(sagaMiddleware, logger),
 );
