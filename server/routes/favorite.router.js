@@ -6,9 +6,9 @@ const router = express.Router();
 // return all favorite images
 router.get('/', (req, res) => {
   // WILL PROBABLY NEED TO GET CHANGED LATER
-  axios.get('SET_GIF')
-  .then(response => {
-    res.send(response.data)
+  let queryText = `SELECT url FROM "favorites" ORDER BY "url";`;
+  pool.query(queryText).then(result => {
+    res.send(result.rows);
   })
   .catch(error => {
     console.log('Error with getting favorites from server', error);
