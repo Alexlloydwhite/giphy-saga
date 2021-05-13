@@ -45,19 +45,18 @@ const SearchForm = () => {
     const searchResults = useSelector(store => store.search)
     const favList = useSelector(store => store.gifList)
     return (
-        <div>
-            <div>
+        <div className="searchApp">
+            <div className="search">
                 <h4>Search For a Giphy</h4>
                 <input onChange={(e) => setSearch(e.target.value)} value={search}></input>
                 <button onClick={searchGiphy}>Search</button>
             </div>
-            <div>
+            <div className= "image">
                 {toggledSearch ? <h2>Showing Search Results For: {searchResult}</h2> : <></>}
                 {toggledSearch ? 
                 <div>
                     <img src={searchResults}></img><br />
                     {favorite ? <h5>Image Added To Favorites!</h5> : <button onClick={addFavorite}>favorite</button>}
-                    
                 </div> 
                 :
                 <h5>Search for an image!</h5>}

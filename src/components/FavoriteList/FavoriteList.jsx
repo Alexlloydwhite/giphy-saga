@@ -1,20 +1,21 @@
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import FavoriteItem from '../FavoriteItem/FavoriteItem';
 
-function FavoriteList (){
+function FavoriteList() {
 
-    const gifList = useSelector(store => store.gifList);
+    // const gifList = useSelector(store => store.gifList);
     const dispatch = useDispatch();
     //
     useEffect(() => {
-      dispatch({type: 'FETCH_FAVORITE'})
+        dispatch({ type: 'FETCH_FAVORITE' })
     })
     return (
         <>
-            {gifList.map((img, index) => 
+            <h5>fav imgs here!</h5>
+            {/* {gifList.map((img, index) => 
                 <FavoriteItem key={index} img src={img.url} /> 
-            )}
+            )} */}
         </>
     )
 }
