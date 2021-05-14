@@ -23,7 +23,7 @@ const SearchForm = () => {
                 }
             })
                 .then(response => {
-                    dispatch({ type: 'SET_SEARCH', payload: response.data.data.images.original.url });
+                    dispatch({ type: 'SET_SEARCH', payload: response.data.data.image_url });
                     setToggleSearch(true);
                     setFavorite(false);
                     setSearchResults(search);

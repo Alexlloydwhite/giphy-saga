@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import {useDispatch} from 'react-redux';
 
@@ -17,6 +16,7 @@ function FavoriteItem(img) {
 
     return(
             <div className='card'>
+                {/* {JSON.stringify(img)} */}
                 <img src={img.url} />
                 <label for="category">Category:</label>
                 <select {...category.map((item) => 
@@ -29,6 +29,5 @@ function FavoriteItem(img) {
     )
 
 }
-
 
 export default FavoriteItem;
