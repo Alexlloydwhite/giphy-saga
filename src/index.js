@@ -27,7 +27,7 @@ function* getFavorite() {
     try {
         const response = yield axios.get('/api/favorite');
         console.log(response);
-        yield put({ type: 'SET_FAVORITE', payload: response });
+        yield put({ type: 'SET_FAVORITE', payload: response.data });
     } catch (error) {
         alert('Unable to get gif from server');
         console.log('ERROR in getGif', error);
@@ -48,7 +48,8 @@ function* getCategory(){
 
 function* addFavoriteGif(action) {
     try {
-        yield axios.post('/api/favorite', String(action.payload));
+        console.log('in addfavorite gif:', action.payload);
+        yield axios.post('/api/favorite', {url: action.payload});
     } catch (error) {
         alert('Unable to add new gif');
         console.log('ERROR in addGif', error);
@@ -71,23 +72,21 @@ function* rootSaga() {
     // yield takeEvery('FETCH_GIF', getGif);
     yield takeEvery('ADD_NEW_FAVORITE', addFavoriteGif);
     // yield takeEvery('DELETE_GIF', deleteGif);
-    yield takeEvery('DELETE_GIF', deleteGif);
+    // yield takeEvery('DELETE_GIF', deleteGif);
     yield takeEvery('FETCH_CATEGORY', getCategory);
     yield takeEvery('FETCH_FAVORITE', getFavorite);
 }
 
 const gifList = (state = [], action) => {
     switch (action.type) {
-        // case 'ADD_GIF':
-        //     return [...state, action.image]
         case 'SET_FAVORITE':
-            return [...state, action.payload];
+            return action.payload;
         default:
             return state;
     }
 };
 
-const search = (state = {}, action) => {
+const search = (state = '', action) => {
     if (action.type === 'SET_SEARCH') {
         return action.payload;
     }
