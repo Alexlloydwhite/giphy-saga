@@ -14,16 +14,6 @@ function App() {
         <Header />
         <Route exact path="/favoritelist" component={FavoriteList} />
         <Route exact path="/" component={SearchForm} />
-        <nav>
-          <ul>
-            <li>
-              <Link to='/favorites'>Favorites</Link>
-            </li>
-          </ul>
-        </nav>
-        <Route path="/favorites" exact>
-          <FavoriteList />
-        </Route>
       </Router>
     </div>
   );

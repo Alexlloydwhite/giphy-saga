@@ -26,7 +26,3 @@ const Header = () => {
 }
 
 export default Header;
-
-
-// () => history.push('/')
-// () => history.push('/favoriteList')

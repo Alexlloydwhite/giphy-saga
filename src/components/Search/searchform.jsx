@@ -15,6 +15,7 @@ const SearchForm = () => {
 
     const searchGiphy = () => {
         // checks to ensure input was provided
+        // TODO - add message to alert user is input is NULL
         if (search !== '') {
             // sends search to giphy API
             axios.get('/api/search', {
