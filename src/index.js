@@ -79,10 +79,8 @@ function* rootSaga() {
 
 const gifList = (state = [], action) => {
     switch (action.type) {
-        // case 'ADD_GIF':
-        //     return [...state, action.image]
         case 'SET_FAVORITE':
-            return [...state, action.payload];
+            return action.payload;
         default:
             return state;
     }
@@ -98,7 +96,7 @@ const search = (state = '', action) => {
 
 const category = (state = [], action) => {
     if(action.type === 'SET_CATEGORY'){
-        return [...state, action.payload];
+        return action.payload;
     }
     return state;
 }

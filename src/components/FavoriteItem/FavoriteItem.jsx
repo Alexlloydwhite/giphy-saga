@@ -1,29 +1,33 @@
 import { useEffect } from "react";
-import {useDispatch} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import './FavoriteItem.css';
 
 function FavoriteItem(img) {
 
 
     const dispatch = useDispatch();
 
-    // const category = useSelector(store => store.category);
+    const category = useSelector(store => store.category);
 
     useEffect(() => {
-      dispatch({type: 'FETCH_CATEGORY'})
-    })
+        dispatch({ type: 'FETCH_CATEGORY' })
+    }, [])
+    console.log(img.url);
 
-    return(
-            <div className='card'>
-                {/* {JSON.stringify(img)} */}
-                {/* <img src={img.url} />
-                <label for="category">Category:</label>
-                <select {...category.map((item) => 
-                    <option value={item.id}>{item.name}</option>
-                )}>
-                </select> */}
+    console.log(category);
 
-
+    return (
+        <div className='card'>
+            <div className="cardContents">
+                <img src={img.img.url} />
+                <br />
+                <select>
+                    {category.map(cat => {
+                        return <option key={cat.id} value={cat.id}>{cat.name}</option>
+                    })}
+                </select>
             </div>
+        </div>
     )
 
 }

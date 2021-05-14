@@ -5,15 +5,17 @@ import Header from './Header';
 import FavoriteList from '../FavoriteList/FavoriteList';
 
 function App() {
- 
+
 
 
   return (
     <div>
       <Router>
         <Header />
-        <Route exact path="/favoritelist" component={FavoriteList} />
-        <Route exact path="/" component={SearchForm} />
+        <div className="app">
+          <Route exact path="/favoritelist" component={FavoriteList} />
+          <Route exact path="/" component={SearchForm} />
+        </div>
       </Router>
     </div>
   );
